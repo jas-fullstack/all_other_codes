@@ -1,0 +1,40 @@
+multiple search option..
+$style = $_POST['style'];
+$bathrooms = $_POST['bathrooms'];
+$min_width =  $_POST['min_width'];
+$style = $_POST['style'];
+
+$whereArr = array();
+
+if($style  != 'any')
+{
+	if($style != "") $whereArr[] = "style= '$style'";
+}
+if($bedrooms != 'any')
+{
+	if($bedrooms != "") $whereArr[] = "bedrooms = {$bedrooms}";
+}
+if($bathrooms != 'any')
+{
+	
+	if($bathrooms!= "") $whereArr[] = "bathrooms= {$bathrooms}";
+}
+if($den != 'any')
+{
+	if($den != "") $whereArr[] = "den= {$den}";
+}
+
+$whereStr = implode(" AND ", $whereArr);
+
+$sql = "Select * from plans WHERE {$whereStr}";
+
+	echo $sql;
+	if($sql == 'Select * from plans WHERE ')
+	{
+		 $sql = "Select * from plans";
+		//print_r($_POST);
+	}
+	else
+	{
+		$sql;
+	}
